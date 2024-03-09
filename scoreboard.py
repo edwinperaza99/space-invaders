@@ -11,8 +11,8 @@ class Scoreboard:
         self.screen_rect = game.screen.get_rect()
         self.settings = game.settings
         self.stats = game.stats
-
-        self.text_color = (30, 30, 30)
+        self.text_color = (255, 255, 255)  # white color
+        # self.text_color = (30, 30, 30) # dark color
         self.font = pg.font.SysFont(None, 48)
         self.prep()
         self.prep_high_score()
