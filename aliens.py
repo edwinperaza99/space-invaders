@@ -84,6 +84,7 @@ class Aliens:
 
     def __init__(self, game):
         self.game = game
+        self.sound = game.sound
         self.screen = game.screen
         self.settings = game.settings
         self.stats = game.stats
@@ -195,6 +196,8 @@ class Aliens:
             self.settings.increase_speed()
             self.stats.level += 1
             self.sb.prep_level()
+            # change song here for new level
+            self.sound.play_music(self.sound.select_song())
 
         # aliens hitting the ship
         if pg.sprite.spritecollideany(self.ship, self.alien_group):

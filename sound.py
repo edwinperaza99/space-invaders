@@ -10,9 +10,22 @@ class Sound:
         self.ship_laser = mixer.Sound("sounds/ship_laser.wav")
         self.alien_laser = mixer.Sound("sounds/alien_laser.wav")
         # self.explosion = mixer.Sound("sounds/explosion.wav")
+        self.current_song = 0
+        self.songs = ["sounds/Melody.wav", "sounds/koala.wav", "sounds/This_Groove.wav"]
         self.volume = 0.5
         self.set_volume(self.volume)
         self.set_effects_volume(ship=0.3, alien=0.05)
+
+    def reset(self):
+        self.current_song = 0
+        self.set_volume(self.volume)
+
+    def select_song(self):
+        if self.current_song == (len(self.songs) - 1):
+            self.current_song = 0
+        else:
+            self.current_song += 1
+        return self.songs[self.current_song]
 
     def set_effects_volume(self, ship=0.3, alien=0.05):
         self.ship_laser.set_volume(ship)

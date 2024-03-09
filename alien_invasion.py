@@ -1,6 +1,5 @@
 import sys, time
 import pygame as pg
-import random
 from settings import Settings
 from ship import Ship
 from aliens import Aliens
@@ -8,7 +7,6 @@ from vector import Vector
 from game_stats import GameStats
 from button import Button
 from scoreboard import Scoreboard
-
 
 # from barriers import Barriers
 from sound import Sound
@@ -29,11 +27,6 @@ class Game:
             (self.settings.screen_width, self.settings.screen_height)
         )
         pg.display.set_caption("Alien Invasion")
-        self.soundtrack_list = [
-            "sounds/Melody.wav",
-            "sounds/koala.wav",
-            "sounds/This_Groove.wav",
-        ]
         self.aliens = None
         self.sound = Sound(game=self)
         self.stats = GameStats(game=self)
@@ -88,17 +81,18 @@ class Game:
         print("Game Over !")
         pg.mouse.set_visible(True)
         self.play_button.change_text("Play again?")
-        self.sound.play_game_over()
         self.play_button.show()
+        self.sound.play_game_over()
         self.first = True
         self.game_active = False
         self.stats.reset()
+        self.sound.reset()
         self.restart()
 
     def activate(self):
         self.game_active = True
         self.first = False
-        self.sound.play_music(random.choice(self.soundtrack_list))
+        self.sound.play_music(self.sound.select_song())
 
     def play(self):
         finished = False
