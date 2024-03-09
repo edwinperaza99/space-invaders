@@ -124,9 +124,11 @@ class Aliens:
         alien = Alien(self.game, row=0, alien_no=-1)
         alien_width, alien_height = alien.rect.size
 
+        # TODO: add alien height to leave margin at the top
         x, y, row = alien_width, alien_height, 0
         self.aliens_created = 0
-        while y < (self.settings.screen_height - 3 * alien_height):
+        margin_bottom = 3 * alien_height  # variable to change distance from bottom
+        while y < (self.settings.screen_height - margin_bottom):
             while x < (self.settings.screen_width - 2 * alien_width):
                 self.create_alien(x=x, y=y, row=row, alien_no=self.aliens_created)
                 x += self.settings.alien_spacing * alien_width
