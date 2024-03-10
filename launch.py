@@ -22,7 +22,7 @@ class LaunchScreen:
             "w_pigtails",
             "wild_tentacles",
         ]
-        self.points = [10, 25, 300, 35, 100, 600]
+        self.points = [10, 25, 50, 100, 250, 500]
         self.images = [pg.image.load(f"images/alien_{name}.png") for name in self.names]
 
     def display_alien_info(self):

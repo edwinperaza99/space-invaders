@@ -10,7 +10,7 @@ from sound import Sound
 
 class Alien(Sprite):
     names = ["bunny", "pig", "stalk_eyes", "w_heart", "w_pigtails", "wild_tentacles"]
-    points = [10, 25, 300, 35, 100, 600]
+    points = [10, 25, 50, 100, 250, 500]
     images = [pg.image.load(f"images/alien_{name}.png") for name in names]
     # nameslen = len(names)
     # choices = [randint(0, nameslen) for _ in range(nameslen)]
