@@ -12,6 +12,7 @@ class Alien(Sprite):
     names = ["bunny", "pig", "stalk_eyes", "w_heart", "w_pigtails", "wild_tentacles"]
     points = [10, 25, 50, 100, 250, 500]
     images = [pg.image.load(f"images/alien_{name}.png") for name in names]
+    # explosion_images_100 = [pg.image.load(f"images/explosion_100/alien_explosion_{name}.png") for name in names]
     # nameslen = len(names)
     # choices = [randint(0, nameslen) for _ in range(nameslen)]
 
@@ -28,7 +29,7 @@ class Alien(Sprite):
         self.regtimer = Timer(
             Alien.images, start_index=randint(0, len(Alien.images) - 1), delta=20
         )
-        # self.explosiontimer = Timer(Alien.explosionimages, delta=20, looponce=True)
+        # self.explosiontimer = Timer(Alien.explosion_images, delta=20, looponce=True)
         self.timer = self.regtimer
 
         self.image = Alien.images[row % len(Alien.names)]
@@ -159,6 +160,7 @@ class Aliens:
             self.ship.hit()
 
         # ship lasers taking out aliens
+        # TODO: ADD CODE HERE FROM MIN 34:15 LECTURE 9
         collisions = pg.sprite.groupcollide(
             self.ship.lasers.lasergroup(), self.alien_group, True, True
         )
