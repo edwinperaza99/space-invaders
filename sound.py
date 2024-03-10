@@ -12,9 +12,9 @@ class Sound:
         # self.explosion = mixer.Sound("sounds/explosion.wav")
         self.current_song = 0
         self.songs = ["sounds/Melody.wav", "sounds/koala.wav", "sounds/This_Groove.wav"]
-        self.volume = 0.5
+        self.volume = 0.3
         self.set_volume(self.volume)
-        self.set_effects_volume(ship=0.3, alien=0.05)
+        self.set_effects_volume(ship=0.15, alien=0.07)
 
     def reset(self):
         self.current_song = 0

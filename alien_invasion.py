@@ -10,6 +10,7 @@ from scoreboard import Scoreboard
 
 # from barriers import Barriers
 from sound import Sound
+from launch import LaunchScreen
 
 
 class Game:
@@ -31,6 +32,8 @@ class Game:
         self.sound = Sound(game=self)
         self.stats = GameStats(game=self)
         self.sb = Scoreboard(game=self)
+        # TODO: check if here is fine
+        self.launch_screen = LaunchScreen(game=self)
 
         self.ship = Ship(game=self)
         self.aliens = Aliens(game=self)
@@ -80,14 +83,16 @@ class Game:
     def game_over(self):
         print("Game Over !")
         pg.mouse.set_visible(True)
-        self.play_button.change_text("Play again?")
-        self.play_button.show()
+        # self.play_button.change_text("Play again?")
+        # self.play_button.show()
         self.sound.play_game_over()
         self.first = True
         self.game_active = False
         self.stats.reset()
         self.sound.reset()
         self.restart()
+        # TODO: test this and check that it works in this position
+        self.launch_screen.run()  # kinda works but there is a bug
 
     def activate(self):
         self.game_active = True
@@ -95,6 +100,7 @@ class Game:
         self.sound.play_music(self.sound.select_song())
 
     def play(self):
+        self.launch_screen.run()
         finished = False
         self.screen.fill(self.settings.bg_color)
 

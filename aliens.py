@@ -120,7 +120,7 @@ class Aliens:
         self.create_fleet()
 
     def create_fleet(self):
-        self.fire_every_counter = 0
+        self.fire_every_counter = 1  # changed from 0 to 1 to prevent first fire
         alien = Alien(self.game, row=0, alien_no=-1)
         alien_width, alien_height = alien.rect.size
 

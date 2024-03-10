@@ -2,7 +2,7 @@ class Settings:
     def __init__(self):
         self.screen_width = 1200
         self.screen_height = 700
-        self.bg_color = (70, 70, 70)
+        self.bg_color = (10, 10, 10)
 
         self.laser_width = 5
         self.laser_height = 15
