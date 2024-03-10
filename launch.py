@@ -10,9 +10,14 @@ class LaunchScreen:
         # TODO: probably play song here
         self.screen = game.screen
         self.screen_rect = self.screen.get_rect()
-        self.play_button = Button(game=self.game, text="Play", pos=(450, 640))
+        self.play_button = Button(
+            game=self.game, text="Play", pos=(450, 640), selected_color=(255, 7, 58)
+        )
         self.high_score_button = Button(
-            game=self.game, text="High Scores", pos=(750, 640)
+            game=self.game,
+            text="High Score",
+            pos=(750, 640),
+            selected_color=(9, 210, 255),
         )
         self.names = [
             "bunny",
@@ -67,17 +72,19 @@ class LaunchScreen:
                 pg.quit()
                 sys.exit()
             elif type == pg.MOUSEBUTTONDOWN:
+                b = self.play_button
+                c = self.high_score_button
                 x, y = pg.mouse.get_pos()
-                if self.play_button.rect.collidepoint(x, y):
-                    self.play_button.press()
-                elif self.high_score_button.rect.collidepoint(x, y):
-                    self.high_score_button.press()
+                if b.rect.collidepoint(x, y):
+                    b.press()
+                elif c.rect.collidepoint(x, y):
+                    c.press()
             elif type == pg.MOUSEMOTION:
+                b = self.play_button
+                c = self.high_score_button
                 x, y = pg.mouse.get_pos()
-                self.play_button.select(self.play_button.rect.collidepoint(x, y))
-                self.high_score_button.select(
-                    self.high_score_button.rect.collidepoint(x, y)
-                )
+                b.select(b.rect.collidepoint(x, y))
+                c.select(c.rect.collidepoint(x, y))
 
     def draw(self):
         self.screen.fill(self.game.settings.bg_color)
@@ -94,6 +101,8 @@ class LaunchScreen:
         self.high_score_button.show()
         self.sound.play_music("sounds/Melody.wav")
         while not self.game.game_active:
+            self.play_button.update()
+            self.high_score_button.update()
             self.check_events()
             self.draw()
             if self.play_button.clicked:

@@ -10,8 +10,8 @@ class Button:
         pos=None,
         size=(200, 50),
         text_color=(255, 255, 255),
-        bg_color=(0, 0, 255),
-        selected_color=(0, 255, 50),
+        selected_color=(57, 255, 250),
+        bg_color=(57, 255, 20),
     ):
         self.game = game
         self.screen = game.screen
@@ -68,14 +68,19 @@ class Button:
     def hide(self):
         self.visible = False
 
-    def press(self):
-        self.selected = False
-        self.visible = False
-        pg.mouse.set_visible(False)
-        self.sb.prep()
-        self.game.activate()
-        self.settings.initialize_dynamic_settings
-        self.game.restart()
+    def press(self, high_score=False, launch=False):
+        if high_score:
+            pass
+        elif launch:
+            pass
+        else:
+            self.selected = False
+            self.visible = False
+            pg.mouse.set_visible(False)
+            self.sb.prep()
+            self.game.activate()
+            self.settings.initialize_dynamic_settings
+            self.game.restart()
 
     def prep_text(self):
         self.notselected_img = self.font.render(

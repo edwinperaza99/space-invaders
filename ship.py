@@ -104,8 +104,9 @@ class Ship(Sprite):
     def reset(self):
         self.lasers.empty()
         self.center_ship()
-        # TODO: add the following line to stop ship from moving on its own
+        # TODO: add the following two lines to stop ship from moving on its own
         self.all_stop()
+        self.cease_fire()
 
     def update(self):
         self.rect.left += self.v.x * self.settings.ship_speed
