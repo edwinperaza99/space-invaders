@@ -6,6 +6,7 @@ from random import randint
 from lasers import Lasers
 from timer import Timer
 from sound import Sound
+from random import randint
 
 
 class Alien(Sprite):
@@ -42,8 +43,11 @@ class Alien(Sprite):
         self.rect.y = self.rect.height
 
         self.x = float(self.rect.x)
+
+        # TODO: variables for explosion
+        self.points = Alien.points[randint(0, len(Alien.points) - 1)]
         self.isdying = False
-        self.reallydead = False
+        self.dead = False
 
     def laser_offscreen(self, rect):
         return rect.bottom > self.screen_rect.bottom
