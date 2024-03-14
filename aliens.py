@@ -34,7 +34,7 @@ class Alien(Sprite):
         self.regtimer = Timer(
             Alien.images, start_index=randint(0, len(Alien.images) - 1), delta=20
         )
-        # self.explosiontimer = Timer(Alien.explosion_images, delta=20, looponce=True)
+        self.explosiontimer = Timer(Alien.explosion_images_100, delta=3, looponce=True)
         self.timer = self.regtimer
 
         self.image = Alien.images[row % len(Alien.names)]
@@ -58,6 +58,24 @@ class Alien(Sprite):
         rect.midbottom = self.rect.midbottom
         return rect.copy()
 
+    def get_explosion_timer(self, points=60):
+        explode_images = [
+            pg.transform.scale(
+                pg.image.load(f"images/explosion_{points}/explode_{points}_0{x}.png"),
+                (80, 80),
+            )
+            for x in range(0, 5)
+        ]
+        timer = Timer(image_list=explode_images, start_index=0, delta=3, looponce=True)
+        return timer
+
+    def hit(self, points):
+        self.isdying = True
+        # change the timer here
+
+        self.explosiontimer = self.get_explosion_timer(points)
+        self.timer = self.explosiontimer
+
     def fire(self, lasers):
         # print(f'Alien {self.alien_no} firing laser')
         lasers.add(owner=self)
@@ -75,6 +93,8 @@ class Alien(Sprite):
         self.x += v.x
         self.rect.x = self.x
         self.rect.y += delta_y
+        if self.explosiontimer.finished():
+            self.kill()
         self.draw()
 
     def draw(self):
@@ -167,16 +187,20 @@ class Aliens:
         # ship lasers taking out aliens
         # TODO: ADD CODE HERE FROM MIN 34:15 LECTURE 9
         collisions = pg.sprite.groupcollide(
-            self.ship.lasers.lasergroup(), self.alien_group, True, True
+            self.alien_group, self.ship.lasers.lasergroup(), False, True
         )
         if len(collisions) > 0:
             for alien in collisions:
-                index = alien.timer.current_index()
-                points = Alien.points[index]
-                self.stats.score += points
-                # self.stats.score += self.settings.alien_points
-            self.sb.prep_score()
-            self.sb.check_high_score()
+                # do not run collision again if alien is already drying
+                if not alien.isdying:
+                    # TODO: check if this is working
+                    index = alien.timer.current_index()
+                    points = Alien.points[index]
+                    alien.hit(points)
+                    self.stats.score += points
+                    # self.stats.score += self.settings.alien_points
+                    self.sb.prep_score()
+                    self.sb.check_high_score()
 
         # laser-laser collisions
         collisions = pg.sprite.groupcollide(
