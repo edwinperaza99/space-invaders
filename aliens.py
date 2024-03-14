@@ -75,6 +75,7 @@ class Alien(Sprite):
 
         self.explosiontimer = self.get_explosion_timer(points)
         self.timer = self.explosiontimer
+        # TODO: play explosion audio here
 
     def fire(self, lasers):
         # print(f'Alien {self.alien_no} firing laser')
