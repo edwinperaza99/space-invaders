@@ -9,7 +9,7 @@ from sound import Sound
 
 
 class Ship(Sprite):
-    laser_image_files = [f"images/ship_laser_0{x}.png" for x in range(2)]
+    laser_image_files = [f"images/ship_laser/ship_laser_0{x}.png" for x in range(2)]
     laser_images = [pg.image.load(x) for x in laser_image_files]
     ship_images = [pg.image.load("images/ship.png")]
     ship_explosion_images = [
