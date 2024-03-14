@@ -22,7 +22,7 @@ class Settings:
 
     def initialize_dynamic_settings(self):
         self.laser_speed = 10
-        self.alien_speed = 5
+        self.alien_speed = 3.5
         self.ship_speed = 15
 
         self.alien_points = 50
