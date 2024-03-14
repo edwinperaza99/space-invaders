@@ -3,8 +3,10 @@ class Timer:
         self.image_list = image_list
         self.delta = delta
         self.looponce = looponce
+        self.start_index = start_index
         self.index = start_index
         self.time = 0
+        # self.index = start_index if start_index < len(image_list) - 1 else 0
 
     def update_index(self):
         self.time += 1
@@ -26,6 +28,11 @@ class Timer:
             return self.image_list[-1]
         self.update_index()
         return self.image_list[self.index]
+
+    def reset(self):
+        self.index = (
+            self.start_index if self.start_index < len(self.image_list) - 1 else 0
+        )
 
 
 # TODO: test if dictionary works

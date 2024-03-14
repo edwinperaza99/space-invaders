@@ -28,7 +28,9 @@ class LaunchScreen:
             "wild_tentacles",
         ]
         self.points = [10, 25, 50, 100, 250, 500]
-        self.images = [pg.image.load(f"images/alien_{name}.png") for name in self.names]
+        self.images = [
+            pg.image.load(f"images/aliens/alien_{name}.png") for name in self.names
+        ]
 
     def display_alien_info(self):
         max_image_width = max(image.get_width() for image in self.images)

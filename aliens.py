@@ -11,7 +11,7 @@ from sound import Sound
 class Alien(Sprite):
     names = ["bunny", "pig", "stalk_eyes", "w_heart", "w_pigtails", "wild_tentacles"]
     points = [60, 80, 100, 200, 300, 500]
-    images = [pg.image.load(f"images/alien_{name}.png") for name in names]
+    images = [pg.image.load(f"images/aliens/alien_{name}.png") for name in names]
     explosion_images_100 = [
         pg.transform.scale(
             pg.image.load(f"images/explosion_100/explode_100_0{x}.png"), (80, 80)
@@ -103,7 +103,7 @@ class Alien(Sprite):
 
 
 class Aliens:
-    laser_image_files = [f"images/alien_laser_0{x}.png" for x in range(2)]
+    laser_image_files = [f"images/alien_laser/alien_laser_0{x}.png" for x in range(2)]
     laser_images = [
         pg.transform.scale(pg.image.load(x), (50, 50)) for x in laser_image_files
     ]
