@@ -80,7 +80,7 @@ class LaunchScreen:
                 if b.rect.collidepoint(x, y):
                     b.press()
                 elif c.rect.collidepoint(x, y):
-                    c.press()
+                    c.click()
             elif type == pg.MOUSEMOTION:
                 b = self.play_button
                 c = self.high_score_button
@@ -101,7 +101,8 @@ class LaunchScreen:
         self.play_button.show()
         self.high_score_button.clicked = False
         self.high_score_button.show()
-        self.sound.play_music("sounds/Melody.wav")
+        if not pg.mixer.music.get_busy():
+            self.sound.play_music("sounds/Melody.wav")
         while not self.game.game_active:
             self.play_button.update()
             self.high_score_button.update()
@@ -109,6 +110,9 @@ class LaunchScreen:
             self.draw()
             if self.play_button.clicked:
                 self.game.play()
+                break
+            elif self.high_score_button.clicked:
+                self.game.show_high_scores_screen()  # Transition to high scores screen
                 break
             # elif self.high_score_button.pressed:
             # self.game.show_high_scores()

@@ -39,21 +39,27 @@ class HighScoreScreen:
 
     def display_high_score(self):
         highest_score_text = pg.font.SysFont(None, 170).render(
-            "SPACE", True, (255, 255, 255), self.game.settings.bg_color
+            "HIGUEST", True, (255, 255, 255), self.game.settings.bg_color
         )
         highest_score_text_rect = highest_score_text.get_rect(
             center=(self.screen_rect.centerx, 270)
         )
+        highest_score_text2 = pg.font.SysFont(None, 170).render(
+            "SCORE", True, (255, 255, 255), self.game.settings.bg_color
+        )
+        highest_score_text2_rect = highest_score_text2.get_rect(
+            center=(self.screen_rect.centerx, highest_score_text_rect.bottom + 45)
+        )
 
-        top_score = str(self.high_score)
         actual_score_text = pg.font.SysFont(None, 110).render(
-            top_score, True, (57, 255, 20), self.game.settings.bg_color
+            f"{self.high_score:,}", True, (9, 210, 255), self.game.settings.bg_color
         )
         actual_score_text_rect = actual_score_text.get_rect(
-            center=(self.screen_rect.centerx, highest_score_text_rect.bottom + 15)
+            center=(self.screen_rect.centerx, highest_score_text2_rect.bottom + 25)
         )
 
         self.screen.blit(highest_score_text, highest_score_text_rect)
+        self.screen.blit(highest_score_text2, highest_score_text2_rect)
         self.screen.blit(actual_score_text, actual_score_text_rect)
 
     def check_events(self):
@@ -69,7 +75,7 @@ class HighScoreScreen:
                 if b.rect.collidepoint(x, y):
                     b.press()
                 elif c.rect.collidepoint(x, y):
-                    c.press()
+                    c.click()
             elif type == pg.MOUSEMOTION:
                 b = self.play_button
                 c = self.back_button
@@ -80,7 +86,7 @@ class HighScoreScreen:
     def draw(self):
         self.screen.fill(self.game.settings.bg_color)
         self.display_title()
-        self.display_alien_info()
+        self.display_high_score()
         self.play_button.draw()
         self.back_button.draw()
         pg.display.flip()
@@ -90,7 +96,7 @@ class HighScoreScreen:
         self.play_button.show()
         self.back_button.clicked = False
         self.back_button.show()
-        self.sound.play_music("sounds/Melody.wav")
+        # self.sound.play_music("sounds/Melody.wav")
         while not self.game.game_active:
             self.play_button.update()
             self.back_button.update()
@@ -98,6 +104,9 @@ class HighScoreScreen:
             self.draw()
             if self.play_button.clicked:
                 self.game.play()
+                break
+            elif self.back_button.clicked:
+                self.game.launch_screen.run()
                 break
             # elif self.back_button.pressed:
             # self.game.show_high_scores()

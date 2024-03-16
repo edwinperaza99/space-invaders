@@ -80,7 +80,7 @@ class Ufo(Sprite):
             self.rect.x = self.screen_rect.right
             self.speed = -randint(2, 8)
         # self.rect.y = randint(0, self.screen_rect.height // 4)
-        self.rect.y = 40
+        self.rect.y = 75
 
         self.active = True
         self.sound.play_music("sounds/stallord-2.wav")

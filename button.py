@@ -82,6 +82,9 @@ class Button:
             self.settings.initialize_dynamic_settings
             self.game.restart()
 
+    def click(self):
+        self.clicked = not self.clicked
+
     def prep_text(self):
         self.notselected_img = self.font.render(
             self.text, True, self.text_color, self.bg_color

@@ -11,6 +11,7 @@ from ufo import Ufo
 from barriers import Barriers
 from sound import Sound
 from launch import LaunchScreen
+from high_score import HighScoreScreen
 
 
 class Game:
@@ -105,6 +106,10 @@ class Game:
         self.game_active = True
         self.first = False
         self.sound.play_music(self.sound.select_song())
+
+    def show_high_scores_screen(self):
+        high_score_screen = HighScoreScreen(self)
+        high_score_screen.run()
 
     def play(self):
         self.launch_screen.run()
