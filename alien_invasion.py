@@ -7,6 +7,7 @@ from vector import Vector
 from game_stats import GameStats
 from button import Button
 from scoreboard import Scoreboard
+from ufo import Ufo
 
 # from barriers import Barriers
 from sound import Sound
@@ -37,6 +38,10 @@ class Game:
 
         self.ship = Ship(game=self)
         self.aliens = Aliens(game=self)
+
+        # TODO: check if here is fine
+        self.ufo = Ufo(game=self)
+
         self.ship.set_aliens(self.aliens)
         self.ship.set_sb(self.sb)
         self.game_active = False  # MUST be before Button is created
@@ -113,6 +118,8 @@ class Game:
                 self.ship.update()
                 self.aliens.update()  # when we have aliens
                 self.sb.update()
+                # TODO: check if here is fine
+                self.ufo.update()
             else:
                 self.play_button.update()
 

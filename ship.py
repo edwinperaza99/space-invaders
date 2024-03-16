@@ -88,13 +88,13 @@ class Ship(Sprite):
 
     def fire(self):
         self.lasers.add(owner=self)
-        # TODO: ADD SOUND FOR LASER HERE
         self.sound.play_ship_laser()
 
     def hit(self):
         # TODO: check if this works
         if not self.dying:
             print("Abandon ship! Ship has been hit!")
+            self.sound.play_ship_explosion()
             self.dying = True
             self.timer = self.timer_explosion
             # TODO: play explosion sound here
