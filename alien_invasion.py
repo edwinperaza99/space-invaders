@@ -8,8 +8,7 @@ from game_stats import GameStats
 from button import Button
 from scoreboard import Scoreboard
 from ufo import Ufo
-
-# from barriers import Barriers
+from barriers import Barriers
 from sound import Sound
 from launch import LaunchScreen
 
@@ -41,6 +40,9 @@ class Game:
 
         # TODO: check if here is fine
         self.ufo = Ufo(game=self)
+        self.alien_lasers = self.aliens.lasers
+        self.ship_lasers = self.ship.lasers
+        self.barriers = Barriers(game=self)
 
         self.ship.set_aliens(self.aliens)
         self.ship.set_sb(self.sb)
@@ -120,6 +122,7 @@ class Game:
                 self.sb.update()
                 # TODO: check if here is fine
                 self.ufo.update()
+                self.barriers.update()
             else:
                 self.play_button.update()
 

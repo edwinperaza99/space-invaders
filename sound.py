@@ -94,8 +94,8 @@ class Sound:
         # sleep for last laser sound
         # time.sleep(2)
         self.set_volume(1)
-        self.play_once("sounds/game_over.wav")
+        self.play_once("sounds/gameover.wav")
         # have to sleep for however long the last sound is...
-        time.sleep(6)
+        time.sleep(3)
         self.set_volume(self.volume)
         self.stop_music()
