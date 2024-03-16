@@ -31,24 +31,24 @@ class HighScoreScreen:
             "INVADERS", True, (57, 255, 20), self.game.settings.bg_color
         )
         title_invaders_rect = title_invaders.get_rect(
-            center=(self.screen_rect.centerx, title_space_rect.bottom + 15)
+            center=(self.screen_rect.centerx, title_space_rect.bottom + 20)
         )
 
         self.screen.blit(title_space, title_space_rect)
         self.screen.blit(title_invaders, title_invaders_rect)
 
     def display_high_score(self):
-        highest_score_text = pg.font.SysFont(None, 170).render(
+        highest_score_text = pg.font.SysFont(None, 110).render(
             "HIGUEST", True, (255, 255, 255), self.game.settings.bg_color
         )
         highest_score_text_rect = highest_score_text.get_rect(
-            center=(self.screen_rect.centerx, 270)
+            center=(self.screen_rect.centerx, 320)
         )
-        highest_score_text2 = pg.font.SysFont(None, 170).render(
+        highest_score_text2 = pg.font.SysFont(None, 130).render(
             "SCORE", True, (255, 255, 255), self.game.settings.bg_color
         )
         highest_score_text2_rect = highest_score_text2.get_rect(
-            center=(self.screen_rect.centerx, highest_score_text_rect.bottom + 45)
+            center=(self.screen_rect.centerx, highest_score_text_rect.bottom + 35)
         )
 
         actual_score_text = pg.font.SysFont(None, 110).render(

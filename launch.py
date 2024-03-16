@@ -61,7 +61,7 @@ class LaunchScreen:
             "INVADERS", True, (57, 255, 20), self.game.settings.bg_color
         )
         title_invaders_rect = title_invaders.get_rect(
-            center=(self.screen_rect.centerx, title_space_rect.bottom + 15)
+            center=(self.screen_rect.centerx, title_space_rect.bottom + 20)
         )
 
         self.screen.blit(title_space, title_space_rect)
@@ -102,7 +102,7 @@ class LaunchScreen:
         self.high_score_button.clicked = False
         self.high_score_button.show()
         if not pg.mixer.music.get_busy():
-            self.sound.play_music("sounds/Melody.wav")
+            self.sound.play_music("sounds/space_invaders.wav")
         while not self.game.game_active:
             self.play_button.update()
             self.high_score_button.update()
