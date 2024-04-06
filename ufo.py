@@ -113,3 +113,7 @@ class Ufo(Sprite):
         if self.active:
             self.image = self.timer.current_image()
             self.screen.blit(self.image, self.rect)
+
+
+if __name__ == "__main__":
+    print("\nERROR: ufo.py is the wrong file! Run play from game.py\n")

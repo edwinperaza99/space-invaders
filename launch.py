@@ -7,7 +7,6 @@ class LaunchScreen:
     def __init__(self, game):
         self.game = game
         self.sound = game.sound
-        # TODO: probably play song here
         self.screen = game.screen
         self.screen_rect = self.screen.get_rect()
         self.play_button = Button(
@@ -114,7 +113,7 @@ class LaunchScreen:
             elif self.high_score_button.clicked:
                 self.game.show_high_scores_screen()  # Transition to high scores screen
                 break
-            # elif self.high_score_button.pressed:
-            # self.game.show_high_scores()
-            # break
-            # self.game.clock.tick(self.game.settings.fps)
+
+
+if __name__ == "__main__":
+    print("\nERROR: launch.py is the wrong file! Run play from game.py\n")

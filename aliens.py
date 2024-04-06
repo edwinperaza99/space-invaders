@@ -18,9 +18,6 @@ class Alien(Sprite):
         )
         for x in range(0, 5)
     ]
-    # nameslen = len(names)
-    # choices = [randint(0, nameslen) for _ in range(nameslen)]
-
     li = [x * x for x in range(1, 11)]
 
     def __init__(self, game, row, alien_no):
@@ -30,22 +27,16 @@ class Alien(Sprite):
         self.screen = game.screen
         self.screen_rect = self.screen.get_rect()
         self.settings = game.settings
-
         self.regtimer = Timer(
             Alien.images, start_index=randint(0, len(Alien.images) - 1), delta=20
         )
         self.explosiontimer = Timer(Alien.explosion_images_100, delta=3, looponce=True)
         self.timer = self.regtimer
-
         self.image = Alien.images[row % len(Alien.names)]
         self.alien_no = alien_no
-        # self.image = Alien.images[randint(0, 5)]
-        # self.image = Alien.images[Alien.choices[row % len(Alien.names)]]
         self.rect = self.image.get_rect()
-
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
-
         self.x = float(self.rect.x)
         self.isdying = False
         self.reallydead = False
@@ -71,15 +62,11 @@ class Alien(Sprite):
 
     def hit(self, points):
         self.isdying = True
-        # change the timer here
-
         self.explosiontimer = self.get_explosion_timer(points)
         self.timer = self.explosiontimer
-        # TODO: play explosion audio here
         self.sound.play_alien_explosion()
 
     def fire(self, lasers):
-        # print(f'Alien {self.alien_no} firing laser')
         lasers.add(owner=self)
         self.sound.play_alien_laser()
 
@@ -126,7 +113,6 @@ class Aliens:
             timer=self.laser_timer,
             owner=self,
         )
-
         self.alien_group = pg.sprite.Group()
         self.ship = game.ship
         self.alien_firing_now = 0
@@ -152,7 +138,7 @@ class Aliens:
         alien = Alien(self.game, row=0, alien_no=-1)
         alien_width, alien_height = alien.rect.size
 
-        # TODO: add alien height to leave margin at the top (added the 2*alien_height to y)
+        # add alien height to leave margin at the top (added the 2*alien_height to y)
         x, y, row = alien_width, 3 * alien_height, 0
         self.aliens_created = 0
         margin_bottom = 3 * alien_height  # variable to change distance from bottom
@@ -187,7 +173,6 @@ class Aliens:
             self.ship.hit()
 
         # ship lasers taking out aliens
-        # TODO: ADD CODE HERE FROM MIN 34:15 LECTURE 9
         collisions = pg.sprite.groupcollide(
             self.alien_group, self.ship.lasers.lasergroup(), False, True
         )
@@ -195,12 +180,10 @@ class Aliens:
             for alien in collisions:
                 # do not run collision again if alien is already drying
                 if not alien.isdying:
-                    # TODO: check if this is working
                     index = alien.timer.current_index()
                     points = Alien.points[index]
                     alien.hit(points)
                     self.stats.score += points
-                    # self.stats.score += self.settings.alien_points
                     self.sb.prep_score()
                     self.sb.check_high_score()
 
@@ -244,4 +227,4 @@ class Aliens:
 
 
 if __name__ == "__main__":
-    print("\nERROR: aliens.py is the wrong file! Run play from alien_invasions.py\n")
+    print("\nERROR: aliens.py is the wrong file! Run play from game.py\n")

@@ -7,7 +7,6 @@ class HighScoreScreen:
     def __init__(self, game):
         self.game = game
         self.sound = game.sound
-        # TODO: probably play song here
         self.screen = game.screen
         self.screen_rect = self.screen.get_rect()
         self.play_button = Button(
@@ -39,7 +38,7 @@ class HighScoreScreen:
 
     def display_high_score(self):
         highest_score_text = pg.font.SysFont(None, 110).render(
-            "HIGUEST", True, (255, 255, 255), self.game.settings.bg_color
+            "HIGHEST", True, (255, 255, 255), self.game.settings.bg_color
         )
         highest_score_text_rect = highest_score_text.get_rect(
             center=(self.screen_rect.centerx, 320)
@@ -82,6 +81,11 @@ class HighScoreScreen:
                 x, y = pg.mouse.get_pos()
                 b.select(b.rect.collidepoint(x, y))
                 c.select(c.rect.collidepoint(x, y))
+            elif type == pg.KEYDOWN:
+                key = event.key
+                if key == pg.K_q:
+                    pg.quit()
+                    sys.exit()
 
     def draw(self):
         self.screen.fill(self.game.settings.bg_color)
@@ -96,7 +100,7 @@ class HighScoreScreen:
         self.play_button.show()
         self.back_button.clicked = False
         self.back_button.show()
-        # self.sound.play_music("sounds/Melody.wav")
+
         while not self.game.game_active:
             self.play_button.update()
             self.back_button.update()
@@ -108,7 +112,7 @@ class HighScoreScreen:
             elif self.back_button.clicked:
                 self.game.launch_screen.run()
                 break
-            # elif self.back_button.pressed:
-            # self.game.show_high_scores()
-            # break
-            # self.game.clock.tick(self.game.settings.fps)
+
+
+if __name__ == "__main__":
+    print("\nERROR: high_score.py is the wrong file! Run play from game.py\n")

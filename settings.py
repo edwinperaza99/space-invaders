@@ -28,12 +28,10 @@ class Settings:
         self.alien_points = 50
 
     def increase_speed(self):
-        # self.laser_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
-        # self.ship_speed *= self.speedup_scale
 
         self.alien_points = int(self.alien_points * self.score_scale)
 
 
 if __name__ == "__main__":
-    print("\nERROR: settings.py is the wrong file! Run play from alien_invasions.py\n")
+    print("\nERROR: settings.py is the wrong file! Run play from game.py\n")

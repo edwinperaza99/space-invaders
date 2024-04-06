@@ -35,38 +35,5 @@ class Timer:
         )
 
 
-# TODO: test if dictionary works
-# class TimerDict(Timer):
-#     def __init__(self, dictionary, start_key, delta=6, looponce=False):
-#         super().__init__(
-#             image_list=dictionary[start_key],start_index=0, delta=delta, looponce=looponce
-#         )
-#         self.dictionary = dictionary
-#         self.start_key = start_key
-#         self.current_key = start_key
-
-#     def has_name(self, name):
-#         return name in self.dictionary
-
-#     def keys(self):
-#         return self.dictionary.keys()
-
-#     def switch_to(self, key, looponce=False):
-#         self.image_list = self.dictionary[key]
-#         self.index = 0
-#         self.time = 0
-#         self.looponce = looponce
-#         self.current_key = key
-
-# TODO: remove the methods below
-#     def update_index(self):
-#         return super().update_index()
-
-#     def finished(self):
-#         return super().finished()
-
-#     def current_index(self):
-#         return super().current_index()
-
-#     def current_image(self):
-#         return super().current_image()
+if __name__ == "__main__":
+    print("\nERROR: timer.py is the wrong file! Run play from game.py\n")

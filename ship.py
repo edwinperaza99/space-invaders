@@ -34,14 +34,10 @@ class Ship(Sprite):
         self.continuous_fire = False
         self.screen = game.screen
         self.screen_rect = game.screen.get_rect()
-
         self.image = pg.image.load("images/ship.png")
         self.rect = self.image.get_rect()
-
         self.rect.midbottom = self.screen_rect.midbottom
         self.fire_counter = 0
-
-        # TODO: check if this works
         self.timer_normal = Timer(image_list=Ship.ship_images)
         self.timer_explosion = Timer(
             image_list=Ship.ship_explosion_images, delta=3, looponce=True
@@ -51,8 +47,6 @@ class Ship(Sprite):
 
     def set_aliens(self, aliens):
         self.aliens = aliens
-
-    # def set_lasers(self, lasers): self.lasers = lasers
 
     def set_sb(self, sb):
         self.sb = sb
@@ -91,23 +85,13 @@ class Ship(Sprite):
         self.sound.play_ship_laser()
 
     def hit(self):
-        # TODO: check if this works
         if not self.dying:
             print("Abandon ship! Ship has been hit!")
             self.sound.play_ship_explosion()
             self.dying = True
             self.timer = self.timer_explosion
-            # TODO: play explosion sound here
-            # time.sleep(2)
-            # self.stats.ships_left -= 1
-            # self.sb.prep_ships()
-            # if self.stats.ships_left <= 0:
-            #     self.game.game_over()
-            # else:
-            #     self.game.restart()
 
     def really_dead(self):
-        # time.sleep(2)
         self.stats.ships_left -= 1
         self.sb.prep_ships()
         if self.stats.ships_left <= 0:
@@ -131,10 +115,8 @@ class Ship(Sprite):
     def reset(self):
         self.lasers.empty()
         self.center_ship()
-        # TODO: add the following two lines to stop ship from moving on its own
         self.all_stop()
         self.cease_fire()
-        # TODO: check if the following three lines work
         self.dying = self.dead = False
         self.timer = self.timer_normal
         self.timer_explosion.reset()
@@ -163,4 +145,4 @@ class Ship(Sprite):
 
 
 if __name__ == "__main__":
-    print("\nERROR: ship.py is the wrong file! Run play from alien_invasions.py\n")
+    print("\nERROR: ship.py is the wrong file! Run play from game.py\n")

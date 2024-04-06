@@ -77,3 +77,7 @@ class Scoreboard:
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
         self.ships.draw(self.screen)
+
+
+if __name__ == "__main__":
+    print("\nERROR: scoreboard.py is the wrong file! Run play from game.py\n")
