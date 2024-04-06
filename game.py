@@ -33,18 +33,13 @@ class Game:
         self.sound = Sound(game=self)
         self.stats = GameStats(game=self)
         self.sb = Scoreboard(game=self)
-        # TODO: check if here is fine
         self.launch_screen = LaunchScreen(game=self)
-
         self.ship = Ship(game=self)
         self.aliens = Aliens(game=self)
-
-        # TODO: check if here is fine
         self.ufo = Ufo(game=self)
         self.alien_lasers = self.aliens.lasers
         self.ship_lasers = self.ship.lasers
         self.barriers = Barriers(game=self)
-
         self.ship.set_aliens(self.aliens)
         self.ship.set_sb(self.sb)
         self.game_active = False  # MUST be before Button is created
@@ -72,6 +67,9 @@ class Game:
                     self.play_button.press()
                 elif key in Game.key_velocity:
                     self.ship.add_speed(Game.key_velocity[key])
+                elif key == pg.K_q:
+                    pg.quit()
+                    sys.exit()
             elif type == pg.MOUSEBUTTONDOWN:
                 b = self.play_button
                 x, y = pg.mouse.get_pos()
@@ -91,15 +89,12 @@ class Game:
     def game_over(self):
         print("Game Over !")
         pg.mouse.set_visible(True)
-        # self.play_button.change_text("Play again?")
-        # self.play_button.show()
         self.sound.play_game_over()
         self.first = True
         self.game_active = False
         self.stats.reset()
         self.sound.reset()
         self.restart()
-        # TODO: test this and check that it works in this position
         self.launch_screen.run()  # kinda works but there is a bug
 
     def activate(self):
@@ -125,7 +120,6 @@ class Game:
                 self.ship.update()
                 self.aliens.update()  # when we have aliens
                 self.sb.update()
-                # TODO: check if here is fine
                 self.ufo.update()
                 self.barriers.update()
             else:
